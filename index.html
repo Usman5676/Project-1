@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Video Downloader - No Watermark</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header with Logo and Navigation -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <i class="fab fa-tiktok logo-icon"
+                g></i>
+                <span class="logo-text">TikDownload</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="terms.html">Terms</a>
+                <a href="privacy.html">Privacy</a>
+            </div>
+            
+            <div class="auth-buttons" id="auth-buttons">
+                <button class="auth-btn login-btn" id="login-btn">Log In</button>
+                <button class="auth-btn signup-btn" id="signup-btn">Sign Up</button>
+            </div>
+            <div class="user-profile" id="user-profile" style="display: none;">
+                <div class="user-avatar" id="user-avatar">U</div>
+                <span class="user-name" id="user-name">User</span>
+                <button class="logout-btn" id="logout-btn">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Notification Container -->
+    <div id="notification-container"></div>
+
+    <!-- Main Content - This will be replaced by other pages -->
+    <div class="container" id="main-content">
+        <!-- Home Page Content -->
+        <div id="home-page">
+            <div class="main-title">
+                <h1><i class="fab fa-tiktok"></i> TikTok Downloader</h1>
+                <p class="subtitle">Download HD Videos Without Watermark</p>
+            </div>
+
+            <div class="download-section">
+                <div class="input-group">
+                    <input type="text" id="tiktok-url" placeholder="Paste TikTok video URL here..." required>
+                    <button id="download-btn"><i class="fas fa-download"></i> Download</button>
+                </div>
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>No Watermark</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-hd"></i>
+                        <span>HD Quality</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-image"></i>
+                        <span>Image Download</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-lock"></i>
+                        <span>Secure</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="history-section" id="history-section" style="display: none;">
+                <h2>Your Download History</h2>
+                <div class="history-list" id="history-list">
+                    <div class="no-history">No download history yet</div>
+                </div>
+            </div>
+
+            <div class="result-section" id="result-section">
+                <div class="tabs">
+                    <div class="tab active" data-tab="video">Video</div>
+                    <div class="tab" data-tab="image">Image</div>
+                </div>
+                
+                <div class="tab-content active" id="video-tab">
+                    <div class="video-preview">
+                        <video id="video-preview" controls controlsList="nodownload noplaybackrate nofullscreen" disablePictureInPicture></video>
+                    </div>
+                    <div class="download-options">
+                        <h3>Download Options</h3>
+                        <div class="options">
+                            <button class="option-btn" id="download-no-watermark">
+                                <i class="fas fa-file-video"></i> No Watermark
+                            </button>
+                            <button class="option-btn" id="download-hd">
+                                <i class="fas fa-hd"></i> HD Quality
+                            </button>
+                            <button class="option-btn" id="download-audio">
+                                <i class="fas fa-music"></i> Audio Only
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="image-tab">
+                    <div class="image-preview">
+                        <img id="image-preview" src="" alt="TikTok Cover Image">
+                    </div>
+                    <div class="download-options">
+                        <h3>Download Options</h3>
+                        <div class="options">
+                            <button class="option-btn" id="download-image">
+                                <i class="fas fa-image"></i> Download Image
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Processing your video...</p>
+            </div>
+
+            <div class="error" id="error">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p id="error-message"></p>
+            </div>
+
+            <div class="how-to-use">
+                <h2>How to Download TikTok Videos Without Watermark</h2>
+                <ol>
+                    <li>Copy the link of the TikTok video you want to download (from the app or website)</li>
+                    <li>Paste the link in the input field above</li>
+                    <li>Click the "Download" button</li>
+                    <li>Choose your preferred download option</li>
+                    <li>Save the video to your device</li>
+                </ol>
+            </div>
+        </div>
+        
+        <!-- About Page Content (hidden by default) -->
+        <div id="about-page" class="info-page" style="display: none;">
+            <h2>About TikTok Video Downloader</h2>
+            
+            <p>Welcome to TikDownload, the easiest way to download TikTok videos without watermarks. Our service allows you to save your favorite TikTok videos directly to your device in high quality.</p>
+            
+            <h3>How It Works</h3>
+            <p>Our platform uses advanced technology to extract TikTok videos while removing the watermark. Here's the simple process:</p>
+            <ol>
+                <li>Find a TikTok video you want to download</li>
+                <li>Copy its share link</li>
+                <li>Paste the URL into our downloader</li>
+                <li>Select your preferred download option</li>
+                <li>Save the video to your device</li>
+            </ol>
+            
+            <h3>Features</h3>
+            <ul>
+                <li>No watermark on downloaded videos</li>
+                <li>HD quality downloads</li>
+                <li>Audio-only extraction</li>
+                <li>Cover image download</li>
+                <li>Fast processing</li>
+                <li>No registration required</li>
+            </ul>
+            
+            <h3>FAQ</h3>
+            
+            <h4>Is this service free?</h4>
+            <p>Yes, our basic service is completely free to use. We may offer premium features in the future.</p>
+            
+            <h4>Is it legal to download TikTok videos?</h4>
+            <p>Downloading videos for personal use is generally permitted, but you should respect copyright laws. Only download videos you have permission to use or that are intended for public sharing.</p>
+            
+            <h4>Why can't I download some videos?</h4>
+            <p>Some videos may be restricted by their creators or set to private. We can only download publicly available content.</p>
+            
+            <h4>Do you store downloaded videos?</h4>
+            <p>No, we don't store any videos on our servers. The download process happens in real-time.</p>
+            
+            <h3>Disclaimer</h3>
+            <p>This service is intended for personal use only. Please respect content creators and copyright laws. We are not responsible for how downloaded content is used.</p>
+        </div>
+        
+        <!-- Contact Page Content (hidden by default) -->
+        <div id="contact-page" class="info-page" style="display: none;">
+            <h2>Contact Us</h2>
+            
+            <p>Have questions, suggestions, or need support? We'd love to hear from you!</p>
+            
+            <div class="contact-form">
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="contact-name">Your Name</label>
+                        <input type="text" id="contact-name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-email">Email Address</label>
+                        <input type="email" id="contact-email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-subject">Subject</label>
+                        <input type="text" id="contact-subject" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-message">Message</label>
+                        <textarea id="contact-message" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+            
+            <h3>Other Ways to Reach Us</h3>
+            <p><strong>Email:</strong> support@tikdownload.com</p>
+            <p><strong>Business Inquiries:</strong> business@tikdownload.com</p>
+            <p><strong>DMCA/Copyright:</strong> copyright@tikdownload.com</p>
+        </div>
+        
+        <!-- Terms Page Content (hidden by default) -->
+        <div id="terms-page" class="info-page" style="display: none;">
+            <h2>Terms of Service</h2>
+            <p><em>Last Updated: January 1, 2025</em></p>
+            
+            <h3>1. Acceptance of Terms</h3>
+            <p>By accessing or using the TikDownload service ("Service"), you agree to be bound by these Terms of Service ("Terms"). If you disagree with any part of the terms, you may not access the Service.</p>
+            
+            <h3>2. Description of Service</h3>
+            <p>TikDownload provides a web-based platform that allows users to download TikTok videos without watermarks. The Service is provided "as is" and we make no warranties regarding its functionality.</p>
+            
+            <h3>3. User Responsibilities</h3>
+            <p>You agree to use the Service only for lawful purposes and in accordance with these Terms. You specifically agree:</p>
+            <ul>
+                <li>Not to use the Service to violate any laws or regulations</li>
+                <li>Not to infringe on any intellectual property rights</li>
+                <li>Not to download content you don't have rights to</li>
+                <li>Not to use the Service for commercial purposes without permission</li>
+            </ul>
+            
+            <h3>4. Copyright Policy</h3>
+            <p>We respect the intellectual property rights of others. The Service is intended for personal, non-commercial use only. You should only download content you have permission to use.</p>
+            <p>If you believe your copyrighted work has been copied in a way that constitutes copyright infringement, please contact us at copyright@tikdownload.com with details of the alleged infringement.</p>
+            
+            <h3>5. Limitation of Liability</h3>
+            <p>In no event shall TikDownload be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from:</p>
+            <ul>
+                <li>Your use or inability to use the Service</li>
+                <li>Any unauthorized access to or use of our servers</li>
+                <li>Any interruption or cessation of transmission to or from the Service</li>
+                <li>Any bugs, viruses, or similar that may be transmitted through the Service</li>
+            </ul>
+            
+            <h3>6. Changes to Terms</h3>
+            <p>We reserve the right to modify these Terms at any time. We will provide notice of any changes by updating the "Last Updated" date at the top of this page. Your continued use of the Service constitutes acceptance of the modified Terms.</p>
+            
+            <h3>7. Governing Law</h3>
+            <p>These Terms shall be governed by and construed in accordance with the laws of the State of Delaware, without regard to its conflict of law provisions.</p>
+            
+            <h3>8. Contact Information</h3>
+            <p>For any questions about these Terms, please contact us at legal@tikdownload.com.</p>
+        </div>
+        
+        <!-- Privacy Policy Page Content (hidden by default) -->
+        <div id="privacy-page" class="info-page" style="display: none;">
+            <h2>Privacy Policy</h2>
+            <p><em>Last Updated: January 1, 2025</em></p>
+            
+            <p>This Privacy Policy describes how TikDownload ("we", "us", or "our") collects, uses, and shares your personal information when you use our website and services.</p>
+            
+            <h3>1. Information We Collect</h3>
+            <p>We may collect the following types of information:</p>
+            
+            <h4>Information You Provide</h4>
+            <ul>
+                <li>Account information (if you register): name, email address, password</li>
+                <li>TikTok URLs you submit for processing</li>
+                <li>Contact information when you reach out to us</li>
+            </ul>
+            
+            <h4>Automatically Collected Information</h4>
+            <ul>
+                <li>IP address and browser information</li>
+                <li>Usage data including pages visited and features used</li>
+                <li>Cookies and similar tracking technologies</li>
+            </ul>
+            
+            <h3>2. How We Use Your Information</h3>
+            <p>We use the information we collect to:</p>
+            <ul>
+                <li>Provide and maintain our Service</li>
+                <li>Improve and personalize the Service</li>
+                <li>Communicate with you</li>
+                <li>Monitor usage and analyze trends</li>
+                <li>Prevent fraud and abuse</li>
+            </ul>
+            
+            <h3>3. Information Sharing</h3>
+            <p>We do not sell your personal information. We may share information in these cases:</p>
+            <ul>
+                <li>With service providers who assist us in operating our Service</li>
+                <li>When required by law or to respond to legal process</li>
+                <li>To protect the rights and safety of our users and the public</li>
+                <li>In connection with a merger, acquisition, or sale of assets</li>
+            </ul>
+            
+            <h3>4. Data Retention</h3>
+            <p>We retain personal information only as long as necessary to provide the Service and for legitimate business purposes. TikTok URLs and download history are stored only for registered users and can be deleted upon request.</p>
+            
+            <h3>5. Your Rights</h3>
+            <p>Depending on your location, you may have certain rights regarding your personal information:</p>
+            <ul>
+                <li>Access and receive a copy of your data</li>
+                <li>Request correction or deletion</li>
+                <li>Object to processing</li>
+                <li>Request restriction of processing</li>
+                <li>Data portability</li>
+            </ul>
+            <p>To exercise these rights, please contact us at privacy@tikdownload.com.</p>
+            
+            <h3>6. Cookies</h3>
+            <p>We use cookies and similar technologies to enhance your experience. You can set your browser to refuse all or some cookies, but this may affect certain features of our Service.</p>
+            
+            <h3>7. Children's Privacy</h3>
+            <p>Our Service is not intended for children under 13. We do not knowingly collect personal information from children under 13. If we become aware of such collection, we will take steps to delete the information.</p>
+            
+            <h3>8. Changes to This Policy</h3>
+            <p>We may update this Privacy Policy from time to time. We will notify you of any changes by updating the "Last Updated" date at the top of this page.</p>
+            
+            <h3>9. Contact Us</h3>
+            <p>For any questions about this Privacy Policy, please contact us at privacy@tikdownload.com.</p>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Login to Your Account</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
+                    <div class="form-error" id="login-email-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required>
+                    <div class="form-error" id="login-password-error"></div>
+                </div>
+                <button type="submit" class="submit-btn" id="login-submit-btn">Log In</button>
+                <div class="form-footer">
+                    Don't have an account? <a href="#" id="show-signup">Sign up</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal" id="signup-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Create an Account</h2>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" required>
+                    <div class="form-error" id="signup-name-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" required>
+                    <div class="form-error" id="signup-email-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password (min 6 characters)</label>
+                    <input type="password" id="signup-password" required minlength="6">
+                    <div class="form-error" id="signup-password-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm-password">Confirm Password</label>
+                    <input type="password" id="signup-confirm-password" required>
+                    <div class="form-error" id="signup-confirm-error"></div>
+                </div>
+                <button type="submit" class="submit-btn" id="signup-submit-btn">Sign Up</button>
+                <div class="form-footer">
+                    Already have an account? <a href="#" id="show-login">Log in</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="#" id="dmca-link">DMCA</a>
+        </div>
+        
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 TikDownload. All rights reserved.</p>
+            <p>This tool is for personal use only. TikTok is a registered trademark of TikTok Inc.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
